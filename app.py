@@ -1,5 +1,6 @@
 from fastapi import UploadFile,Form,FastAPI,File
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from audio_to_text.speect_to_text_using_azure import audio_to_text
 import shutil
 import os
@@ -7,6 +8,13 @@ from Urgency_classifier.prediction import UrgencyClassifier
 from Urgency_classifier.keyword_identifier import keywordindentifier
 
 app=FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Update with specific domain for production
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/audio_to_text/")
 def audio_convertor(audio_file: UploadFile = File(...), language: str= Form(...)):
