@@ -32,3 +32,13 @@ Or without `sudo`:
 docker-compose logs -f
 ```
 
+## 4. Access the API
+Once the container is running, you can access the API at the following URL:
+```
+http://0.0.0.0:8000
+```
+To use the API documentation, append `/docs` to the URL:
+```
+http://0.0.0.0:8000/docs
+```
+
